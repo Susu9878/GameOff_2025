@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqydpyeyu5gwl"]
+
+[ext_resource type="Script" uid="uid://cfriogoe42s8f" path="res://lancha.gd" id="1_hfyvi"]
+[ext_resource type="Texture2D" uid="uid://ce7frp6u85asa" path="res://icon.svg" id="2_wu1n3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kdubu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wu1n3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D2" type="CharacterBody2D"]
+script = ExtResource("1_hfyvi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-252, 16.000021)
+scale = Vector2(0.61328095, 0.52512103)
+sprite_frames = SubResource("SpriteFrames_kdubu")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-253, 600)
+target_position = Vector2(-4, -1193)
