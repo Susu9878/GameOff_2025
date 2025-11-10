@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6c0s8m23xjjb"]
+
+[ext_resource type="Script" uid="uid://dfx7cnpasjceb" path="res://way/character_body_2d.gd" id="1_05758"]
+[ext_resource type="Script" uid="uid://bxk6seupga76k" path="res://way/line_2d.gd" id="2_miix0"]
+
+[node name="way" type="Node2D"]
+
+[node name="way1" type="CharacterBody2D" parent="."]
+position = Vector2(34, 315)
+script = ExtResource("1_05758")
+
+[node name="Line2D" type="Line2D" parent="way1"]
+points = PackedVector2Array(-13, 117, 172, 16, 359, 109, 753, 29, 1195, 92, 1476, -152, 1929, 190, 3109, 111, 3782, -42, 4179, 160, 4889, 1, 5519, -165, 5885, 132, 6303, 96, 6529, -166, 6851, 12, 7351, 1, 7947, -142, 8603, 370, 9556, -59, 10009, 144)
+script = ExtResource("2_miix0")

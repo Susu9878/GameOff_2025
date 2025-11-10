@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqydpyeyu5gwl"]
+[gd_scene load_steps=4 format=3 uid="uid://c5aph2llqr08d"]
 
-[ext_resource type="Script" uid="uid://cfriogoe42s8f" path="res://lancha.gd" id="1_hfyvi"]
-[ext_resource type="Texture2D" uid="uid://ce7frp6u85asa" path="res://icon.svg" id="2_wu1n3"]
+[ext_resource type="Script" uid="uid://c8ov6e37dcr3w" path="res://lancha/lancha.gd" id="1_hfyvi"]
+[ext_resource type="Texture2D" uid="uid://c1tp7pqe622b5" path="res://icon.svg" id="2_wu1n3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kdubu"]
 animations = [{
@@ -15,13 +15,14 @@ animations = [{
 }]
 
 [node name="CharacterBody2D2" type="CharacterBody2D"]
+position = Vector2(259, -10)
 script = ExtResource("1_hfyvi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-252, 16.000021)
+position = Vector2(-255.75002, 3.6077461)
 scale = Vector2(0.61328095, 0.52512103)
 sprite_frames = SubResource("SpriteFrames_kdubu")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(-253, 600)
+position = Vector2(-256.75, 587.6077)
 target_position = Vector2(-4, -1193)
