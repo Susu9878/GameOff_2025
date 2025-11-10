@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyn25gxnaw3v8"]
+
+[ext_resource type="Script" uid="uid://byuxwndcghl6r" path="res://beatcheck/static_body_2d.gd" id="1_5umoa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26rk8"]
+size = Vector2(110, 46)
+
+[node name="beat_check" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+script = ExtResource("1_5umoa")
+
+[node name="Area2D" type="Area2D" parent="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/Area2D"]
+shape = SubResource("RectangleShape2D_26rk8")

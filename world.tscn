@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmwdw8kgbef6b"]
+
+[ext_resource type="PackedScene" uid="uid://c5aph2llqr08d" path="res://lancha/lancha.tscn" id="1_tlwt5"]
+[ext_resource type="Script" uid="uid://dfx7cnpasjceb" path="res://way/character_body_2d.gd" id="2_aqk2v"]
+[ext_resource type="Script" uid="uid://bxk6seupga76k" path="res://way/line_2d.gd" id="3_036b0"]
+
+[node name="world" type="Node2D"]
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("1_tlwt5")]
+position = Vector2(404, 505)
+
+[node name="way1" type="CharacterBody2D" parent="."]
+position = Vector2(34, 315)
+script = ExtResource("2_aqk2v")
+
+[node name="Line2D" type="Line2D" parent="way1"]
+points = PackedVector2Array(-13, 117, 172, 16, 359, 109, 753, 29, 1195, 92, 1476, -152, 1929, 190, 3109, 111, 3782, -42, 4179, 160, 4889, 1, 5519, -165, 5885, 132, 6303, 96, 6529, -166, 6851, 12, 7351, 1, 7947, -142, 8603, 370, 9556, -59, 10009, 144)
+script = ExtResource("3_036b0")
+
+[node name="way2" type="CharacterBody2D" parent="."]
+position = Vector2(68, 630)
+script = ExtResource("2_aqk2v")
+
+[node name="Line2D" type="Line2D" parent="way2"]
+points = PackedVector2Array(-13, 117, 172, 16, 359, 109, 753, 29, 1195, 92, 1476, -152, 1929, 190, 3109, 111, 3782, -42, 4179, 160, 4889, 1, 5519, -165, 5885, 132, 6303, 96, 6529, -166, 6851, 12, 7351, 1, 7947, -142, 8603, 370, 9556, -59, 10009, 144)
+script = ExtResource("3_036b0")
+
+[node name="way3" type="CharacterBody2D" parent="."]
+position = Vector2(56, 46)
+script = ExtResource("2_aqk2v")
+
+[node name="Line2D" type="Line2D" parent="way3"]
+points = PackedVector2Array(-13, 117, 172, 16, 359, 109, 753, 29, 1195, 92, 1476, -152, 1929, 190, 3109, 111, 3782, -42, 4179, 160, 4889, 1, 5519, -165, 5885, 132, 6303, 96, 6529, -166, 6851, 12, 7351, 1, 7947, -142, 8603, 370, 9556, -59, 10009, 144)
+script = ExtResource("3_036b0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1237, 333)
+zoom = Vector2(0.4, 0.4)

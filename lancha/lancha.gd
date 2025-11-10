@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 @onready var raycast = $RayCast2D
 var float_offset = 10.0  # Distancia sobre el agua
-var float_force = 800.0  # Fuerza de flotación
-var gravity = 600.0  # Gravedad cuando cae
+var float_force = 900.0  # Fuerza de flotación
+var gravity = 700.0  # Gravedad cuando cae
 var damping = 0.95  # Amortiguación
 var vertical_velocity = 0.0  # Velocidad vertical actual
 var horizontal_speed = 0.0  # Velocidad horizontal constante (ajusta según necesites)
