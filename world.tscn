@@ -11,6 +11,10 @@
 [node name="world" type="Node2D"]
 script = ExtResource("1_036b0")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1237, 333)
+zoom = Vector2(0.4, 0.4)
+
 [node name="CharacterBody2D2" parent="." instance=ExtResource("1_tlwt5")]
 position = Vector2(404, 505)
 
@@ -53,9 +57,26 @@ position = Vector2(5498, -126)
 [node name="beat_check10" parent="way1" instance=ExtResource("4_aqk2v")]
 position = Vector2(6280, 51)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1237, 333)
-zoom = Vector2(0.4, 0.4)
+[node name="beat_check11" parent="way1" instance=ExtResource("4_aqk2v")]
+position = Vector2(6510, 23)
+
+[node name="beat_check12" parent="way1" instance=ExtResource("4_aqk2v")]
+position = Vector2(6828, -93)
+
+[node name="beat_check13" parent="way1" instance=ExtResource("4_aqk2v")]
+position = Vector2(7333, 35)
+
+[node name="beat_check14" parent="way1" instance=ExtResource("4_aqk2v")]
+position = Vector2(7929, -150)
+
+[node name="beat_check15" parent="way1" instance=ExtResource("4_aqk2v")]
+position = Vector2(8583, 137)
+
+[node name="beat_check16" parent="way1" instance=ExtResource("4_aqk2v")]
+position = Vector2(9534, -35)
+
+[node name="beat_check17" parent="way1" instance=ExtResource("4_aqk2v")]
+position = Vector2(2535, 325)
 
 [node name="way2" type="CharacterBody2D" parent="."]
 position = Vector2(19, 212)
