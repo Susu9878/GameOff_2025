@@ -77,7 +77,7 @@ func refresh_collider():
 	update_collision_shape()
 
 func activate_collider():
-	if World.way == 2:
+	if World.way == 0:
 		collision_polygon.disabled = false
 	else:
 		collision_polygon.disabled = true

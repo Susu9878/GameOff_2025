@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://wibyve3jr4el"]
+
+[ext_resource type="Script" uid="uid://c028e2miovqxo" path="res://beatcheck/beat.gd" id="1_pj6v0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h7gas"]
+size = Vector2(110, 46)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+script = ExtResource("1_pj6v0")
+
+[node name="good" type="Area2D" parent="StaticBody2D"]
+scale = Vector2(-2.8153443, -38.206863)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/good"]
+position = Vector2(-240.46791, 0.23555973)
+shape = SubResource("RectangleShape2D_h7gas")
+
+[node name="mid" type="Area2D" parent="StaticBody2D"]
+rotation = 3.1415927
+scale = Vector2(6.8131623, 38.438328)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/mid"]
+position = Vector2(-20.108139, 0.15609415)
+shape = SubResource("RectangleShape2D_h7gas")
+
+[node name="bad" type="Area2D" parent="StaticBody2D"]
+rotation = 3.1415927
+scale = Vector2(10.424158, 38.493473)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/bad"]
+position = Vector2(79.622734, 0.23380588)
+shape = SubResource("RectangleShape2D_h7gas")
+
+[connection signal="area_entered" from="StaticBody2D/good" to="StaticBody2D" method="_on_good_area_entered"]
+[connection signal="area_entered" from="StaticBody2D/good" to="StaticBody2D" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="StaticBody2D/good" to="StaticBody2D" method="_on_good_area_exited"]
+[connection signal="area_exited" from="StaticBody2D/good" to="StaticBody2D" method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="StaticBody2D/good" to="StaticBody2D" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="StaticBody2D/good" to="StaticBody2D" method="_on_area_2d_body_exited"]
+[connection signal="area_entered" from="StaticBody2D/mid" to="StaticBody2D" method="_on_mid_area_entered"]
+[connection signal="area_exited" from="StaticBody2D/mid" to="StaticBody2D" method="_on_mid_area_exited"]
+[connection signal="area_entered" from="StaticBody2D/bad" to="StaticBody2D" method="_on_bad_area_entered"]
+[connection signal="area_exited" from="StaticBody2D/bad" to="StaticBody2D" method="_on_bad_area_exited"]
