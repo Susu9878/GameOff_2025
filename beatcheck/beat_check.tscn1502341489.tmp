@@ -1,61 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://dyn25gxnaw3v8"]
+[gd_scene load_steps=3 format=3 uid="uid://dyn25gxnaw3v8"]
 
-[ext_resource type="Script" uid="uid://c028e2miovqxo" path="res://beatcheck/beat.gd" id="1_ro3y2"]
-[ext_resource type="Texture2D" uid="uid://c1tp7pqe622b5" path="res://icon.svg" id="2_g2loo"]
+[ext_resource type="Script" uid="uid://byuxwndcghl6r" path="res://beatcheck/static_body_2d.gd" id="1_5umoa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_26rk8"]
-size = Vector2(5.919404, 46)
+size = Vector2(110, 46)
 
 [node name="beat_check" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-script = ExtResource("1_ro3y2")
+script = ExtResource("1_5umoa")
 
 [node name="good" type="Area2D" parent="StaticBody2D"]
-position = Vector2(19.000061, 0)
 scale = Vector2(-2.8153443, -38.206863)
 
-[node name="d" type="CollisionShape2D" parent="StaticBody2D/good"]
-position = Vector2(5.683163, 1.0731056)
-scale = Vector2(0.9999999, 1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/good"]
 shape = SubResource("RectangleShape2D_26rk8")
 
 [node name="mid" type="Area2D" parent="StaticBody2D"]
 rotation = 3.1415927
 scale = Vector2(6.8131623, 38.438328)
 
-[node name="s" type="CollisionShape2D" parent="StaticBody2D/mid"]
-position = Vector2(3.8161435, 1.1446908)
-scale = Vector2(1, 0.9999999)
-shape = SubResource("RectangleShape2D_26rk8")
-
-[node name="s2" type="CollisionShape2D" parent="StaticBody2D/mid"]
-position = Vector2(-4.6967907, 0.9105496)
-scale = Vector2(1, 0.9999999)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/mid"]
 shape = SubResource("RectangleShape2D_26rk8")
 
 [node name="bad" type="Area2D" parent="StaticBody2D"]
-position = Vector2(-140, 49)
 rotation = 3.1415927
 scale = Vector2(10.424158, 38.493473)
 
-[node name="f" type="CollisionShape2D" parent="StaticBody2D/bad"]
-position = Vector2(-5.851791, 1.8704472)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/bad"]
 shape = SubResource("RectangleShape2D_26rk8")
-
-[node name="f2" type="CollisionShape2D" parent="StaticBody2D/bad"]
-position = Vector2(-21.488546, 0.54554754)
-shape = SubResource("RectangleShape2D_26rk8")
-
-[node name="Icon" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0.10980392, 0.3372549)
-position = Vector2(2.667457, 1280)
-rotation = 3.1415927
-scale = Vector2(0.16732687, 38.206863)
-texture = ExtResource("2_g2loo")
 
 [connection signal="area_entered" from="StaticBody2D/good" to="StaticBody2D" method="_on_good_area_entered"]
+[connection signal="area_entered" from="StaticBody2D/good" to="StaticBody2D" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="StaticBody2D/good" to="StaticBody2D" method="_on_good_area_exited"]
+[connection signal="area_exited" from="StaticBody2D/good" to="StaticBody2D" method="_on_area_2d_area_exited"]
 [connection signal="body_entered" from="StaticBody2D/good" to="StaticBody2D" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="StaticBody2D/good" to="StaticBody2D" method="_on_area_2d_body_exited"]
 [connection signal="area_entered" from="StaticBody2D/mid" to="StaticBody2D" method="_on_mid_area_entered"]

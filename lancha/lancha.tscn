@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5aph2llqr08d"]
+[gd_scene load_steps=5 format=3 uid="uid://c5aph2llqr08d"]
 
 [ext_resource type="Script" uid="uid://c8ov6e37dcr3w" path="res://lancha/lancha.gd" id="1_hfyvi"]
 [ext_resource type="Texture2D" uid="uid://c1tp7pqe622b5" path="res://icon.svg" id="2_wu1n3"]
@@ -14,15 +14,26 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7mw78"]
+radius = 62.500217
+
 [node name="CharacterBody2D2" type="CharacterBody2D"]
 position = Vector2(259, -10)
 script = ExtResource("1_hfyvi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-255.75002, 3.6077461)
+position = Vector2(-259, 9)
 scale = Vector2(0.61328095, 0.52512103)
 sprite_frames = SubResource("SpriteFrames_kdubu")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(-256.75, 587.6077)
-target_position = Vector2(-4, -1193)
+position = Vector2(-257, 1071)
+target_position = Vector2(57, -8664)
+
+[node name="Player" type="Area2D" parent="."]
+position = Vector2(-260, 11)
+scale = Vector2(0.15999949, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(6.25, -6)
+shape = SubResource("CircleShape2D_7mw78")

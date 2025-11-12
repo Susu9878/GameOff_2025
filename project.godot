@@ -14,3 +14,7 @@ config/name="Nuevo Proyecto de Juego"
 run/main_scene="uid://cmwdw8kgbef6b"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+World="*res://world.gd"
