@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmwdw8kgbef6b"]
+[gd_scene load_steps=9 format=3 uid="uid://cmwdw8kgbef6b"]
 
 [ext_resource type="Script" uid="uid://ukfa70r23hpy" path="res://world.gd" id="1_036b0"]
 [ext_resource type="PackedScene" uid="uid://c5aph2llqr08d" path="res://lancha/lancha.tscn" id="1_tlwt5"]
 [ext_resource type="Script" uid="uid://dfx7cnpasjceb" path="res://way/character_body_2d.gd" id="2_aqk2v"]
+[ext_resource type="Script" uid="uid://diij2ad8pllp3" path="res://line_creation_prototype.gd" id="2_gbfbk"]
 [ext_resource type="Script" uid="uid://bxk6seupga76k" path="res://way/line_2d.gd" id="3_036b0"]
 [ext_resource type="PackedScene" uid="uid://dyn25gxnaw3v8" path="res://beatcheck/beat_check.tscn" id="4_aqk2v"]
 [ext_resource type="Script" uid="uid://b28fs8xagegl8" path="res://way/line2_2d.gd" id="6_pkg7o"]
@@ -10,6 +11,9 @@
 
 [node name="world" type="Node2D"]
 script = ExtResource("1_036b0")
+
+[node name="LineCreationPrototype" type="Node2D" parent="."]
+script = ExtResource("2_gbfbk")
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("1_tlwt5")]
 position = Vector2(404, 505)
