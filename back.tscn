@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0oh1um3adige"]
+
+[ext_resource type="Script" uid="uid://dfx7cnpasjceb" path="res://way/character_body_2d.gd" id="1_p0pli"]
+[ext_resource type="Texture2D" uid="uid://cs1i1yq6n8cdn" path="res://beatcheck/neon-cityscape-pixel-art-vector-32876760.png" id="2_fgyff"]
+
+[node name="back" type="CharacterBody2D"]
+script = ExtResource("1_p0pli")
+
+[node name="NeonCityscapePixelArtVector32876760" type="Sprite2D" parent="."]
+z_index = -6
+position = Vector2(220, -59)
+scale = Vector2(1.442, 1.1878788)
+texture = ExtResource("2_fgyff")

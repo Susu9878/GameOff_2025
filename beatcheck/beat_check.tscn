@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://c1tp7pqe622b5" path="res://icon.svg" id="2_g2loo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_26rk8"]
-size = Vector2(5.919404, 46)
+size = Vector2(8.243593, 46)
 
-[node name="beat_check" type="Node2D"]
+[node name="beat_check" type="CharacterBody2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 script = ExtResource("1_ro3y2")
@@ -16,7 +16,7 @@ position = Vector2(19.000061, 0)
 scale = Vector2(-2.8153443, -38.206863)
 
 [node name="d" type="CollisionShape2D" parent="StaticBody2D/good"]
-position = Vector2(5.683163, 1.0731056)
+position = Vector2(10.655912, 1.0469323)
 scale = Vector2(0.9999999, 1)
 shape = SubResource("RectangleShape2D_26rk8")
 
@@ -25,12 +25,12 @@ rotation = 3.1415927
 scale = Vector2(6.8131623, 38.438328)
 
 [node name="s" type="CollisionShape2D" parent="StaticBody2D/mid"]
-position = Vector2(3.8161435, 1.1446908)
+position = Vector2(7.1919622, 1.040628)
 scale = Vector2(1, 0.9999999)
 shape = SubResource("RectangleShape2D_26rk8")
 
 [node name="s2" type="CollisionShape2D" parent="StaticBody2D/mid"]
-position = Vector2(-4.6967907, 0.9105496)
+position = Vector2(-4.2564664, 0.9365654)
 scale = Vector2(1, 0.9999999)
 shape = SubResource("RectangleShape2D_26rk8")
 
@@ -40,17 +40,17 @@ rotation = 3.1415927
 scale = Vector2(10.424158, 38.493473)
 
 [node name="f" type="CollisionShape2D" parent="StaticBody2D/bad"]
-position = Vector2(-5.851791, 1.8704472)
+position = Vector2(-1.7267575, 1.870447)
 shape = SubResource("RectangleShape2D_26rk8")
 
 [node name="f2" type="CollisionShape2D" parent="StaticBody2D/bad"]
-position = Vector2(-21.488546, 0.54554754)
+position = Vector2(-23.023441, 0.5455476)
 shape = SubResource("RectangleShape2D_26rk8")
 
 [node name="Icon" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0.10980392, 0.3372549)
-position = Vector2(2.667457, 1280)
-rotation = 3.1415927
+position = Vector2(-10, 1281)
+rotation = -3.1415925
 scale = Vector2(0.16732687, 38.206863)
 texture = ExtResource("2_g2loo")
 
