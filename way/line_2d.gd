@@ -1,20 +1,31 @@
-extends Line2D
+extends Node2D
 
-# Export variables for customization
+# Rhythm data
+var rythm = [0, 0, 0, 1, 0, 1, 0, 0, 2, 1, 0, 0, 1, 2, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 2, 1, 0, 0, 1, 2, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 2, 1, 0, 0, 1, 2, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 2, 1, 0, 0, 1, 2, 1, 0]
+
+# Collision properties
+@export var spacing_x: float = 400.0
+@export var spacing_y: float = 60.0
 @export var collision_width: float = 10.0
-@export var auto_update: bool = true
 
-var collision_polygon: CollisionPolygon2D
 var static_body: StaticBody2D
+var collision_polygon: CollisionPolygon2D
+var beat_check_scene = preload("res://beatcheck/beat_check.tscn")
 
-func _ready():
+func _ready() -> void:
+	spawn_beat_checks()
 	create_collider()
 
-func create_collider():
-	# Remove old collider if it exists
-	if static_body:
-		static_body.queue_free()
-	
+func spawn_beat_checks() -> void:
+	for i in range(rythm.size()):
+		if rythm[i] == 2:
+			var beat_check = beat_check_scene.instantiate()
+			var pos_x = i * spacing_x
+			var pos_y = rythm[i] * spacing_y
+			beat_check.position = Vector2(pos_x, pos_y)
+			add_child(beat_check)
+
+func create_collider() -> void:
 	# Create StaticBody2D
 	static_body = StaticBody2D.new()
 	add_child(static_body)
@@ -23,61 +34,61 @@ func create_collider():
 	collision_polygon = CollisionPolygon2D.new()
 	static_body.add_child(collision_polygon)
 	
-	# Generate the collision shape
-	update_collision_shape()
+	# Generate collision shape once
+	collision_polygon.polygon = generate_collision_polygon()
 
-func update_collision_shape():
-	if not collision_polygon or points.size() < 2:
-		return
+func generate_collision_polygon() -> PackedVector2Array:
+	var point_count = rythm.size()
+	if point_count < 2:
+		return PackedVector2Array()
 	
-	var collision_points: PackedVector2Array = []
+	var left_points = PackedVector2Array()
+	var right_points = PackedVector2Array()
+	var half_width = collision_width * 0.5
 	
-	# Create offset points on both sides of the line
-	var left_points: PackedVector2Array = []
-	var right_points: PackedVector2Array = []
+	left_points.resize(point_count)
+	right_points.resize(point_count)
 	
-	for i in range(points.size()):
-		var current_point = points[i]
+	# Calculate all perpendiculars and offset points
+	for i in point_count:
+		var current = Vector2(i * spacing_x, rythm[i] * spacing_y)
 		var perpendicular: Vector2
 		
 		if i == 0:
-			# First point - use direction to next point
-			var direction = (points[i + 1] - current_point).normalized()
+			var next = Vector2(spacing_x, rythm[1] * spacing_y)
+			var direction = (next - current).normalized()
 			perpendicular = Vector2(-direction.y, direction.x)
-		elif i == points.size() - 1:
-			# Last point - use direction from previous point
-			var direction = (current_point - points[i - 1]).normalized()
+		elif i == point_count - 1:
+			var prev = Vector2((i - 1) * spacing_x, rythm[i - 1] * spacing_y)
+			var direction = (current - prev).normalized()
 			perpendicular = Vector2(-direction.y, direction.x)
 		else:
-			# Middle points - average of both directions
-			var dir1 = (current_point - points[i - 1]).normalized()
-			var dir2 = (points[i + 1] - current_point).normalized()
+			var prev = Vector2((i - 1) * spacing_x, rythm[i - 1] * spacing_y)
+			var next = Vector2((i + 1) * spacing_x, rythm[i + 1] * spacing_y)
+			var dir1 = (current - prev).normalized()
+			var dir2 = (next - current).normalized()
 			var avg_direction = (dir1 + dir2).normalized()
 			perpendicular = Vector2(-avg_direction.y, avg_direction.x)
 		
-		# Add offset points
-		left_points.append(current_point + perpendicular * collision_width / 2)
-		right_points.append(current_point - perpendicular * collision_width / 2)
+		left_points[i] = current + perpendicular * half_width
+		right_points[i] = current - perpendicular * half_width
 	
-	# Combine points: left side forward, right side backward
-	collision_points.append_array(left_points)
-	for i in range(right_points.size() - 1, -1, -1):
-		collision_points.append(right_points[i])
+	# Combine points: left forward + right backward
+	var collision_points = PackedVector2Array()
+	collision_points.resize(point_count * 2)
 	
-	collision_polygon.polygon = collision_points
+	for i in point_count:
+		collision_points[i] = left_points[i]
+		collision_points[point_count * 2 - 1 - i] = right_points[i]
+	
+	return collision_points
 
-func _process(_delta):
-	activate_collider()
-	# Auto-update collider if enabled
-	if auto_update:
-		update_collision_shape()
+func _process(_delta: float) -> void:
+	if collision_polygon:
+		collision_polygon.disabled = (World.way != 2)
 
-# Helper function to manually trigger update
-func refresh_collider():
-	update_collision_shape()
-
-func activate_collider():
-	if World.way == 2:
-		collision_polygon.disabled = false
-	else:
-		collision_polygon.disabled = true
+# Update rhythm and regenerate collider
+func set_rhythm(new_rhythm: Array) -> void:
+	rythm = new_rhythm
+	if collision_polygon:
+		collision_polygon.polygon = generate_collision_polygon()

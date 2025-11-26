@@ -5,5 +5,6 @@ extends Node2D
 func _ready() -> void:
 	way = 2
 func _process(delta):
-	print(way)
+	#print()
+	pass
 	

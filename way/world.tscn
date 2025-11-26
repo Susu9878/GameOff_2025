@@ -1,0 +1,394 @@
+[gd_scene load_steps=8 format=3 uid="uid://daravykcdokw5"]
+
+[ext_resource type="Script" uid="uid://dqqbsvwnh2hnp" path="res://wavesingle.gd" id="1_qnpyt"]
+[ext_resource type="PackedScene" uid="uid://c5aph2llqr08d" path="res://lancha/lancha.tscn" id="2_qnpyt"]
+[ext_resource type="AudioStream" uid="uid://caghy1p6bdg3w" path="res://beatcheck/demo_segunda carrera.wav" id="3_64ll5"]
+[ext_resource type="PackedScene" uid="uid://mm4ikf4nen5k" path="res://way/wavesingle.tscn" id="5_64ll5"]
+[ext_resource type="PackedScene" uid="uid://dwwmngsvt7vt4" path="res://way/way_3.tscn" id="6_ppkit"]
+[ext_resource type="PackedScene" uid="uid://di8juaw31r3g2" path="res://camera.tscn" id="6_qnpyt"]
+[ext_resource type="Texture2D" uid="uid://cs1i1yq6n8cdn" path="res://beatcheck/neon-cityscape-pixel-art-vector-32876760.png" id="7_ppkit"]
+
+[node name="world" type="Node2D"]
+script = ExtResource("1_qnpyt")
+
+[node name="way_3" parent="." instance=ExtResource("6_ppkit")]
+position = Vector2(1193, 561)
+rotation = 3.1415927
+scale = Vector2(1, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_64ll5")
+autoplay = true
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("2_qnpyt")]
+z_index = 5
+position = Vector2(857, 417.00003)
+
+[node name="Node2D" parent="CharacterBody2D2" instance=ExtResource("6_qnpyt")]
+position = Vector2(-631.1537, -444.66516)
+scale = Vector2(0.9986609, 1.0663433)
+
+[node name="wavesingle19" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(286, 556)
+
+[node name="wavesingle20" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(302, 556)
+
+[node name="wavesingle21" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(318, 556)
+
+[node name="wavesingle22" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(334, 556)
+
+[node name="wavesingle23" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(350, 556)
+
+[node name="wavesingle24" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(366, 556)
+
+[node name="wavesingle25" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(382, 556)
+
+[node name="wavesingle26" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(398, 556)
+
+[node name="wavesingle27" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(414, 556)
+
+[node name="wavesingle28" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(430, 556)
+
+[node name="wavesingle29" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(446, 556)
+
+[node name="wavesingle30" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(462, 556)
+
+[node name="wavesingle31" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(478, 556)
+
+[node name="wavesingle32" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(494, 556)
+
+[node name="wavesingle33" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(510, 556)
+
+[node name="wavesingle34" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(526, 556)
+
+[node name="wavesingle35" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(542, 556)
+
+[node name="wavesingle36" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(558, 556)
+
+[node name="wavesingle37" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(574, 556)
+
+[node name="wavesingle38" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(590, 556)
+
+[node name="wavesingle39" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(606, 556)
+
+[node name="wavesingle40" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(622, 556)
+
+[node name="wavesingle41" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(638, 556)
+
+[node name="wavesingle42" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(654, 556)
+
+[node name="wavesingle43" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(670, 556)
+
+[node name="wavesingle44" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(686, 556)
+
+[node name="wavesingle45" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(702, 556)
+
+[node name="wavesingle46" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(718, 556)
+
+[node name="wavesingle47" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(734, 556)
+
+[node name="wavesingle48" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(750, 556)
+
+[node name="wavesingle49" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(766, 556)
+
+[node name="wavesingle50" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(782, 556)
+
+[node name="wavesingle51" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(798, 556)
+
+[node name="wavesingle52" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(814, 556)
+
+[node name="wavesingle53" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(830, 556)
+
+[node name="wavesingle54" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(846, 556)
+
+[node name="wavesingle55" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(862, 556)
+
+[node name="wavesingle56" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(878, 556)
+
+[node name="wavesingle57" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(894, 556)
+
+[node name="wavesingle58" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(910, 556)
+
+[node name="wavesingle59" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(926, 556)
+
+[node name="wavesingle60" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(942, 556)
+
+[node name="wavesingle61" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(958, 556)
+
+[node name="wavesingle62" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(974, 556)
+
+[node name="wavesingle63" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(990, 556)
+
+[node name="wavesingle64" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1006, 556)
+
+[node name="wavesingle65" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1022, 556)
+
+[node name="wavesingle66" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1038, 556)
+
+[node name="wavesingle67" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1054, 556)
+
+[node name="wavesingle68" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1070, 556)
+
+[node name="wavesingle69" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1086, 556)
+
+[node name="wavesingle70" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1102, 556)
+
+[node name="wavesingle71" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1118, 556)
+
+[node name="wavesingle72" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1134, 556)
+
+[node name="wavesingle73" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1150, 556)
+
+[node name="wavesingle74" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1166, 556)
+
+[node name="wavesingle75" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1182, 556)
+
+[node name="wavesingle76" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1198, 556)
+
+[node name="wavesingle77" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1214, 556)
+
+[node name="wavesingle78" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1230, 556)
+
+[node name="wavesingle79" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1246, 556)
+
+[node name="wavesingle80" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1262, 556)
+
+[node name="wavesingle81" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1278, 556)
+
+[node name="wavesingle82" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1294, 556)
+
+[node name="wavesingle83" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1310, 556)
+
+[node name="wavesingle84" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1326, 556)
+
+[node name="wavesingle85" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1342, 556)
+
+[node name="wavesingle86" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1358, 556)
+
+[node name="wavesingle87" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1374, 556)
+
+[node name="wavesingle88" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1390, 556)
+
+[node name="wavesingle89" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1406, 556)
+
+[node name="wavesingle90" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(1422, 556)
+
+[node name="NeonCityscapePixelArtVector32876760" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(703, 404)
+texture = ExtResource("7_ppkit")

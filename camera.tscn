@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://di8juaw31r3g2"]
+
+[ext_resource type="Script" uid="uid://ds1h3760vfc77" path="res://camera.gd" id="1_u5kg4"]
+[ext_resource type="Texture2D" uid="uid://cs1i1yq6n8cdn" path="res://beatcheck/neon-cityscape-pixel-art-vector-32876760.png" id="2_diie0"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_u5kg4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(400, 374)
+zoom = Vector2(1.66, 1.66)
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 4.435
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.09019608)
+z_index = -4
+position = Vector2(852.0001, -2581.0005)
+scale = Vector2(16.331516, 9.864485)
+texture = ExtResource("2_diie0")

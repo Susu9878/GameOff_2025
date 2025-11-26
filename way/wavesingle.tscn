@@ -1,0 +1,100 @@
+[gd_scene load_steps=12 format=3 uid="uid://mm4ikf4nen5k"]
+
+[ext_resource type="Script" uid="uid://dqqbsvwnh2hnp" path="res://wavesingle.gd" id="1_mspw4"]
+[ext_resource type="Texture2D" uid="uid://dbkpfpjtymrrs" path="res://beatcheck/LINEAWAVE.png" id="2_mspw4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcdek"]
+atlas = ExtResource("2_mspw4")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5m68q"]
+atlas = ExtResource("2_mspw4")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nbpm"]
+atlas = ExtResource("2_mspw4")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r28ex"]
+atlas = ExtResource("2_mspw4")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agtwq"]
+atlas = ExtResource("2_mspw4")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cuo7"]
+atlas = ExtResource("2_mspw4")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwse3"]
+atlas = ExtResource("2_mspw4")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1qpa"]
+atlas = ExtResource("2_mspw4")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5m68q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcdek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5m68q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nbpm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r28ex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agtwq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cuo7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwse3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1qpa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_mspw4")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, 1280)
+scale = Vector2(9, 9)
+target_position = Vector2(0, -2540)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 29)
+sprite_frames = SubResource("SpriteFrames_5m68q")
+autoplay = "default"
+frame_progress = 0.7519938
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 91)
+sprite_frames = SubResource("SpriteFrames_5m68q")
+autoplay = "default"
+frame_progress = 0.0056603192
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 153)
+sprite_frames = SubResource("SpriteFrames_5m68q")
+autoplay = "default"
+frame_progress = 0.6963772
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 215)
+sprite_frames = SubResource("SpriteFrames_5m68q")
+autoplay = "default"
+frame_progress = 0.6963772
