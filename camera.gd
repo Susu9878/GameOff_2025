@@ -175,13 +175,18 @@ func check_beat_timing(key: String):
 	print("Tecla '", key, "' presionada. Timing: ", closest_beat_time, "s del beat")
 	
 	# Verificar si está dentro de la ventana de aceptación
-	if closest_beat_time <= BEAT_WINDOW:
-		on_beat_success(key, closest_beat_time)
+	if closest_beat_time <= .05:
+		on_beat_perfect(key, closest_beat_time)
+	elif closest_beat_time <= .15:
+		on_beat_wow(key, closest_beat_time)
+	elif closest_beat_time <= BEAT_WINDOW:
+		on_beat_good(key, closest_beat_time)
 	else:
 		on_beat_miss(key, closest_beat_time)
 
-func on_beat_success(key: String, timing: float):
+func on_beat_perfect(key: String, timing: float):
 	print("✓ ¡PERFECTO! Tecla '", key, "' en el beat (±", timing, "s)")
+	$UserInterface/ScoreLabel.updateScore(1)
 	
 	# Activar efectos de cámara
 	trigger_camera_shake()
@@ -193,8 +198,17 @@ func on_beat_success(key: String, timing: float):
 	# - Sonidos
 	# - etc.
 
+func on_beat_wow(key: String, timing: float):
+	print("✓ ¡WOW! Tecla '", key, "' en el beat (±", timing, "s)")
+	$UserInterface/ScoreLabel.updateScore(2)
+
+func on_beat_good(key: String, timing: float):
+	print("✓ ¡Good! Tecla '", key, "' en el beat (±", timing, "s)")
+	$UserInterface/ScoreLabel.updateScore(3)
+
 func on_beat_miss(key: String, timing: float):
 	print("✗ Fallaste. Tecla '", key, "' fuera del beat (", timing, "s)")
+	$UserInterface/ScoreLabel.updateScore(4)
 	
 	# Aquí puedes agregar penalizaciones o feedback negativo
 

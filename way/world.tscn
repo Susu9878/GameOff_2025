@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://daravykcdokw5"]
+[gd_scene load_steps=10 format=3 uid="uid://daravykcdokw5"]
 
 [ext_resource type="Script" uid="uid://dqqbsvwnh2hnp" path="res://wavesingle.gd" id="1_qnpyt"]
 [ext_resource type="PackedScene" uid="uid://c5aph2llqr08d" path="res://lancha/lancha.tscn" id="2_qnpyt"]
@@ -6,10 +6,19 @@
 [ext_resource type="PackedScene" uid="uid://mm4ikf4nen5k" path="res://way/wavesingle.tscn" id="5_64ll5"]
 [ext_resource type="PackedScene" uid="uid://dwwmngsvt7vt4" path="res://way/way_3.tscn" id="6_ppkit"]
 [ext_resource type="PackedScene" uid="uid://di8juaw31r3g2" path="res://camera.tscn" id="6_qnpyt"]
+[ext_resource type="Script" uid="uid://kwejrnjm7c0u" path="res://way/score_label.gd" id="7_1pxa2"]
 [ext_resource type="Texture2D" uid="uid://cs1i1yq6n8cdn" path="res://beatcheck/neon-cityscape-pixel-art-vector-32876760.png" id="7_ppkit"]
+
+[sub_resource type="Theme" id="Theme_fmo7i"]
+default_font_size = 22
 
 [node name="world" type="Node2D"]
 script = ExtResource("1_qnpyt")
+
+[node name="NeonCityscapePixelArtVector32876760" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(703, 404)
+texture = ExtResource("7_ppkit")
 
 [node name="way_3" parent="." instance=ExtResource("6_ppkit")]
 position = Vector2(1193, 561)
@@ -24,9 +33,28 @@ autoplay = true
 z_index = 5
 position = Vector2(857, 417.00003)
 
-[node name="Node2D" parent="CharacterBody2D2" instance=ExtResource("6_qnpyt")]
+[node name="Camera" parent="CharacterBody2D2" instance=ExtResource("6_qnpyt")]
 position = Vector2(-631.1537, -444.66516)
 scale = Vector2(0.9986609, 1.0663433)
+
+[node name="UserInterface" type="Control" parent="CharacterBody2D2/Camera"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -225.0
+offset_top = -3.051758e-05
+offset_right = -185.0
+offset_bottom = 39.99997
+
+[node name="ScoreLabel" type="Label" parent="CharacterBody2D2/Camera/UserInterface"]
+layout_mode = 0
+offset_left = 281.0
+offset_top = 331.0
+offset_right = 342.0
+offset_bottom = 354.0
+theme = SubResource("Theme_fmo7i")
+text = "Score: 0
+Combo x0"
+script = ExtResource("7_1pxa2")
 
 [node name="wavesingle19" parent="." instance=ExtResource("5_64ll5")]
 top_level = true
@@ -387,8 +415,3 @@ position = Vector2(1406, 556)
 top_level = true
 z_index = 2
 position = Vector2(1422, 556)
-
-[node name="NeonCityscapePixelArtVector32876760" type="Sprite2D" parent="."]
-z_index = -5
-position = Vector2(703, 404)
-texture = ExtResource("7_ppkit")
