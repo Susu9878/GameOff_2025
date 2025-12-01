@@ -146,7 +146,7 @@ func advance_to_next_wave():
 		current_wave = 1  # Reiniciar desde wave 1 (o puedes terminar la carrera)
 		print("¡Ciclo de waves completado! Reiniciando desde wave 1")
 	
-	Waves.set_wave_config()
+	Waves.set_wave_config(current_wave)
 	
 	print("Avanzando a Wave %d" % current_wave)
 
