@@ -100,19 +100,19 @@ func start_countdown():
 		return
 	
 	# 3
-	countdown_label.setup_countdown("3")
+	countdown_label.text = "3"
 	await get_tree().create_timer(1.0).timeout
 	
 	# 2
-	countdown_label.setup_countdown("2")
+	countdown_label.text = "2"
 	await get_tree().create_timer(1.0).timeout
 	
 	# 1
-	countdown_label.setup_countdown("1")
+	countdown_label.text = "1"
 	await get_tree().create_timer(1.0).timeout
 	
 	# GO!
-	countdown_label.setup_countdown("GO!")
+	countdown_label.text = "GO!"
 	await get_tree().create_timer(1.0).timeout
 	
 	# Ocultar countdown
