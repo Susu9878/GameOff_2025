@@ -2,17 +2,21 @@ extends CharacterBody2D
 
 # Configuración de flotación
 @onready var raycast = $RayCast2D
+
 @onready var sprite = $AnimatedSprite2D
 @onready var par = $AnimatedSprite2D/particles
+@onready var effect = $effect
+
 var float_offset = 0.0
 var float_force = 500.0
-var base_float_force = 500.0
+var base_float_force = 700.0
 var gravity = 1000.0
 var base_gravity = 1000.0
 var damping = .95
 var vertical_velocity = 0.0
 var horizontal_speed = 0.0
 var hop_count = 3
+
 # Configuración de rotación con superficie
 const SURFACE_ROTATION_SPEED = 5.0
 const SURFACE_ALIGNMENT_RANGE = 1000
@@ -21,19 +25,60 @@ const SURFACE_ALIGNMENT_RANGE = 1000
 const ROTATION_ACCELERATION = 100.0
 const MAX_ROTATION_SPEED = 120.0
 const ROTATION_DECELERATION = 100.0
-const HOP_FORCE = -200.0
+const HOP_FORCE = -250.0
 
-# ----- CONFIGURACIÓN DE LEAN (INCLINACIÓN) -----
-const LEAN_ANGLE = -40.0  # Ángulo de inclinación hacia atrás (en grados)
-const LEAN_FORWARD_ANGLE = 20.0  # Ángulo de inclinación hacia adelante
-const LEAN_SPEED = 200.0  # Velocidad de inclinación (aumentado para inmediatez)
-const LEAN_RECOVERY_SPEED = 15.0  # Velocidad de recuperación (aumentado)
+# ----- SISTEMA DE PUNTOS -----
+const ACROBACY_POINTS = 100  # Puntos por acrobacia completada
+
+# ----- SISTEMA DE AUDIO Y COMBOS -----
+@onready var acrobacy_sound = $acrobacy
+var combo_count = 0  # Contador de acrobacias en fila
+var combo_reset_timer = 0.0
+const COMBO_RESET_TIME = 0.7  # Tiempo para resetear combo (segundos)
+
+# ----- SISTEMA DE EFECTO VISUAL -----
+var effect_active = false
+var effect_scale = 0.0
+var effect_growing = true
+const EFFECT_SCALE_SPEED = 8.0  # Velocidad del lerp (más alto = más rápido)
+const EFFECT_MAX_SCALE = 2.0  # Escala máxima del efecto (3x más grande)
+
+# Escala frigia (modos para pitch)
+# Frigio: 1, b2, b3, 4, 5, b6, b7, 8
+const PHRYGIAN_SCALE = [
+	1.0,
+	1.067,
+	1.189,
+	1.335,
+	1.498,
+	1.587,
+	1.782, 
+	2.0 * 1.0,
+	2.0 * 1.067, 
+	2.0 * 1.189,  
+	2.0 * 1.335,  
+	2.0 * 1.498,  
+	2.0 * 1.587,  
+	2.0 * 1.782,  
+	2.0 * 2.0,
+	4.0 * 1.067,  
+	4.0 * 1.189,  
+	4.0 * 1.335,  
+	4.0 * 1.498,  
+	4.0 * 1.587,  
+	4.0 * 1.782,  
+	4.0 * 2.0,
+]
+const LEAN_ANGLE = -40.0
+const LEAN_FORWARD_ANGLE = 20.0
+const LEAN_SPEED = 20.0
+const LEAN_RECOVERY_SPEED = 15.0
 
 # ----- CONFIGURACIÓN DE ACELERACIÓN HORIZONTAL -----
-const BOOST_ACCELERATION = 200.0  # Aceleración horizontal durante boost
-const MAX_BOOST_SPEED = 350.0  # Velocidad máxima durante boost
-const SPEED_RECOVERY = 3.0  # Qué tan rápido regresa a la posición original (aumentado)
-const X_OFFSET_RECOVERY = 5.0  # Velocidad de retorno a posición X original
+const BOOST_ACCELERATION = 200.0
+const MAX_BOOST_SPEED = 350.0
+const SPEED_RECOVERY = 2.0
+const X_OFFSET_RECOVERY = 2.0
 
 # Acrobacia 1: Giro completo adelante
 const ACROBACIA_1_ROTATION = -360.0
@@ -50,12 +95,12 @@ var rotation_direction = -1.0
 var on_water = false
 
 # Variables de lean y aceleración
-var is_leaning_back = false  # Renombrado para claridad
-var is_leaning_forward = false  # Renombrado para claridad
-var lean_offset = -0.01  # Offset de inclinación actual
-var boost_speed = 0.0  # Velocidad adicional por boost
-var original_x = 0.0  # Posición X original
-var x_offset = 0.0  # Offset acumulado en X
+var is_leaning_back = false
+var is_leaning_forward = false
+var lean_offset = -0.01
+var boost_speed = 0.0
+var original_x = 0.0
+var x_offset = 0.0
 
 # ----- CONFIGURACIÓN DE BOOST -----
 const BOOST_UP_MIN_MULTIPLIER = 4.0
@@ -67,24 +112,40 @@ const HEIGHT_THRESHOLD = 10.0
 const EXTRA_BOOST_FORCE = 0.0
 const BOOST_COOLDOWN = 1
 
+# ----- VARIABLES LOCALES (actualizan al global) -----
+var distance_to_target = 0.0
 var boost_up_active = false
 var boost_down_active = false
+
 var boost_up_timer = 0.0
 var boost_down_timer = 0.0
-var was_below_target = true
+@onready var was_below_target = true
 var boost_cooldown_timer = 0.0
 
 func _ready():
+	PlayerState.clear_scores()
+	PlayerState.total_points = 0
+	
 	if not Engine.has_singleton("World"):
 		push_error("¡ERROR! El Singleton 'World' no está configurado.")
 	
+	# Registrar este nodo en el PlayerState global
+	if has_node("/root/PlayerState"):
+		PlayerState.set_player(self)
+	
 	base_float_force = float_force
 	base_gravity = gravity
-	original_x = position.x  # Guardar posición X inicial
+	original_x = position.x
+	
+	# Inicializar efecto en escala 0 e invisible
+	if effect:
+		effect.scale = Vector2.ZERO
+		effect.visible = false
 
 func _input(event):
 	# Acrobacia 1 - Tecla 1 (o Q)
 	if event.is_action_pressed("acrobacia_1") and not is_rotating:
+		
 		perform_acrobacia(ACROBACIA_1_ROTATION)
 	
 	# Acrobacia 2 - Tecla 2 (o W)
@@ -94,9 +155,16 @@ func _input(event):
 	# Acrobacia 3 - Tecla 3 (o E)
 	elif event.is_action_pressed("acrobacia_3") and not is_rotating:
 		jump()
+		
 
 func _process(delta):
 	sprite.play("default")
+	if is_rotating:
+		$AnimatedSprite2D.play("acr")
+	else:
+		$AnimatedSprite2D.play("default")
+	# Actualizar efecto visual
+	update_effect(delta)
 	
 	# Actualizar lean (inclinación)
 	update_lean(delta)
@@ -104,30 +172,39 @@ func _process(delta):
 	# Actualizar posición X por boost
 	update_boost_position(delta)
 	
+	# Actualizar timer de combo
+	if combo_count > 0:
+		combo_reset_timer -= delta
+		if combo_reset_timer <= 0:
+			combo_count = 0
+			print("Combo reseteado")
+	
 	# Actualizar cooldown (solo cuando NO está activo el boost)
 	if boost_cooldown_timer > 0 and not boost_up_active:
 		boost_cooldown_timer -= delta
 	
 	# Boost Up - incrementa progresivamente mientras lo mantienes presionado
 	if Input.is_action_pressed("boost_up") and not boost_up_active and boost_cooldown_timer <= 0:
+		$AnimatedSprite2D.play("jump")
 		boost_up_active = true
+		PlayerState.update_boost_up(true)  # Actualizar global
 		boost_up_timer = 0.0
-		is_leaning_back = true  # Activar inclinación hacia atrás
-		is_leaning_forward = false  # Desactivar inclinación adelante
+		is_leaning_back = true
+		is_leaning_forward = false
 	
 	if boost_up_active:
 		boost_up_timer += delta
 		
-		# ACELERACIÓN INMEDIATA - mover esto AQUÍ en _process
+		# ACELERACIÓN INMEDIATA
 		boost_speed = min(boost_speed + BOOST_ACCELERATION * delta, MAX_BOOST_SPEED)
 		
 		if boost_up_timer >= BOOST_RAMP_TIME:
 			boost_up_active = false
+			PlayerState.update_boost_up(false)  # Actualizar global
 			boost_up_timer = 0.0
 			float_force = base_float_force
 			was_below_target = true
 			is_leaning_back = false
-			# NO resetear boost_speed aquí para que desacelere gradualmente
 			boost_cooldown_timer = BOOST_COOLDOWN
 			print("Boost máximo alcanzado (1 seg) - Cooldown activado por %.1f segundos" % BOOST_COOLDOWN)
 		else:
@@ -137,11 +214,11 @@ func _process(delta):
 			
 			if not Input.is_action_pressed("boost_up"):
 				boost_up_active = false
+				PlayerState.update_boost_up(false)  # Actualizar global
 				boost_up_timer = 0.0
 				float_force = base_float_force
 				was_below_target = true
-				is_leaning_back = false  # Desactivar inclinación
-				# NO resetear boost_speed aquí para que desacelere gradualmente
+				is_leaning_back = false
 				boost_cooldown_timer = BOOST_COOLDOWN
 				print("Boost terminado (soltado) - Cooldown activado por %.1f segundos" % BOOST_COOLDOWN)
 	else:
@@ -152,9 +229,10 @@ func _process(delta):
 	if Input.is_action_pressed("boost_down"):
 		if not boost_down_active:
 			boost_down_active = true
+			PlayerState.update_boost_down(true)  # Actualizar global
 			boost_down_timer = 0.0
-			is_leaning_forward = true  # Activar inclinación hacia adelante
-			is_leaning_back = false  # Desactivar inclinación atrás
+			is_leaning_forward = true
+			is_leaning_back = false
 			
 		boost_down_timer += delta
 		
@@ -164,40 +242,69 @@ func _process(delta):
 	else:
 		if boost_down_active:
 			boost_down_active = false
+			PlayerState.update_boost_down(false)  # Actualizar global
 			boost_down_timer = 0.0
 			gravity = base_gravity
 
+func update_effect(delta):
+	"""Actualiza el efecto visual de acrobacia con escala animada"""
+	if not effect:
+		return
+	
+	if effect_active:
+		if effect_growing:
+			# Crecer de 0 a 3
+			effect_scale = lerp(effect_scale, EFFECT_MAX_SCALE, EFFECT_SCALE_SPEED * delta)
+			effect.scale = Vector2(effect_scale, effect_scale)
+			
+			# Cuando llegue cerca de 3, empezar a decrecer
+			if effect_scale >= EFFECT_MAX_SCALE * 0.95:
+				effect_growing = false
+		else:
+			# Decrecer de 3 a 0
+			effect_scale = lerp(effect_scale, 0.0, EFFECT_SCALE_SPEED * delta)
+			effect.scale = Vector2(effect_scale, effect_scale)
+			
+			# Cuando llegue cerca de 0, desactivar
+			if effect_scale <= 0.05:
+				effect_active = false
+				effect.visible = false
+				effect_scale = 0.0
+
+func trigger_effect():
+	"""Activa el efecto visual de acrobacia"""
+	if effect:
+		effect.visible = true
+		effect.play("default")  # Asegúrate que tu AnimatedSprite2D tenga una animación
+		effect_active = true
+		effect_growing = true
+		effect_scale = 0.0
+
 func update_lean(delta):
 	var target_lean = 0.0
-	var current_speed = LEAN_SPEED  # Velocidad por defecto (rápida)
+	var current_speed = LEAN_SPEED
 	
-	# Determinar el ángulo objetivo basado en el estado
 	if is_leaning_back:
 		target_lean = deg_to_rad(LEAN_ANGLE)
 	elif is_leaning_forward:
 		target_lean = deg_to_rad(LEAN_FORWARD_ANGLE)
 	else:
 		target_lean = 0.0
-		current_speed = LEAN_RECOVERY_SPEED  # Usar velocidad de recuperación
+		current_speed = LEAN_RECOVERY_SPEED
 	
-	# Interpolar hacia el ángulo objetivo con la velocidad apropiada
 	lean_offset = lerp(lean_offset, target_lean, current_speed * delta)
 	
-	# Si estamos volviendo a neutral y casi llegamos, resetear
 	if not is_leaning_back and not is_leaning_forward:
 		if abs(lean_offset) < 0.01:
 			lean_offset = 0.0
 	
-	# Desactivar is_leaning_forward solo cuando hayamos vuelto a la posición neutral
 	if is_leaning_forward and not boost_down_active:
 		if abs(lean_offset) < 0.1:
 			is_leaning_forward = false
 
 func update_boost_position(delta):
-	# Aplicar el movimiento horizontal por boost
 	x_offset += boost_speed * delta
 	
-	# Regresar a la posición original cuando no hay boost activo
 	if not boost_up_active:
 		x_offset = lerp(x_offset, 0.0, X_OFFSET_RECOVERY * delta)
 
@@ -209,11 +316,13 @@ func perform_acrobacia(rotation_degrees: float):
 	rotation_direction = sign(rotation_degrees)
 
 func jump():
+	
 	if hop_count != 0:
 		vertical_velocity = HOP_FORCE - 200
 		hop_count -= 1
 	else:
 		return
+
 
 func handle_rotation(delta):
 	if is_rotating:
@@ -241,8 +350,44 @@ func handle_rotation(delta):
 			is_rotating = false
 			current_rotation_speed = 0.0
 			sprite.rotation = fmod(sprite.rotation, TAU)
+			
+			# ¡ACROBACIA COMPLETADA! Agregar puntos
+			award_acrobacy_points()
+			
+			# ¡ACTIVAR EFECTO VISUAL!
+			trigger_effect()
 		else:
 			sprite.rotation += rotation_step
+
+func award_acrobacy_points():
+	"""Otorga puntos al jugador cuando completa una acrobacia"""
+	PlayerState.add_points(ACROBACY_POINTS)
+	
+	# Incrementar combo
+	combo_count += 1
+	PlayerState.update_combo(combo_count)
+	combo_reset_timer = COMBO_RESET_TIME
+	
+	# Reproducir sonido con pitch basado en la escala frigia
+	play_acrobacy_sound()
+	
+	print("¡Acrobacia completada! +%d puntos | Combo: x%d | Total: %d" % [ACROBACY_POINTS, combo_count, PlayerState.total_points])
+
+func play_acrobacy_sound():
+	"""Reproduce el sonido de acrobacia con pitch según combo en escala frigia"""
+	if acrobacy_sound:
+		# Obtener el índice en la escala (circular)
+		var scale_index = (combo_count - 1) % PHRYGIAN_SCALE.size()
+		
+		# Aplicar pitch de la escala frigia
+		acrobacy_sound.pitch_scale = PHRYGIAN_SCALE[scale_index]
+		
+		# Reproducir sonido
+		acrobacy_sound.play()
+		
+		print("Sonido reproducido con pitch: %.3f (nota %d de escala frigia)" % [acrobacy_sound.pitch_scale, scale_index + 1])
+	else:
+		push_warning("AudioStreamPlayer '$acrobacy' no encontrado")
 
 func handle_surface_alignment(delta, distance_to_target: float):
 	if is_rotating:
@@ -252,28 +397,23 @@ func handle_surface_alignment(delta, distance_to_target: float):
 		var surface_normal = raycast.get_collision_normal()
 		var target_angle = surface_normal.angle() - PI / 2.0
 		
-		# SIEMPRE aplicar el lean offset, independientemente del rango
 		target_angle += lean_offset
 		
-		# Solo interpolar si estamos dentro del rango de alineación
 		if abs(distance_to_target) <= SURFACE_ALIGNMENT_RANGE:
 			sprite.rotation = lerp_angle(sprite.rotation, target_angle, SURFACE_ROTATION_SPEED * delta)
 		else:
-			# Fuera del rango, aplicar solo el lean sin interpolación suave
 			sprite.rotation = lerp_angle(sprite.rotation, lean_offset, SURFACE_ROTATION_SPEED * delta)
 
 func _physics_process(delta):
 	handle_rotation(delta)
 	
-	# Movimiento horizontal normal (sin velocidad adicional)
 	velocity.x = horizontal_speed
-	
-	var distance_to_target = 0.0
 	
 	if raycast.is_colliding():
 		var collision_point = raycast.get_collision_point()
 		var target_y = collision_point.y - float_offset
 		distance_to_target = target_y - position.y
+		PlayerState.update_distance(distance_to_target)  # Actualizar global
 		
 		handle_surface_alignment(delta, distance_to_target)
 		
@@ -292,6 +432,8 @@ func _physics_process(delta):
 			vertical_velocity += gravity * delta
 		else:
 			hop_count = 3
+			combo_reset_timer = 0
+			combo_count = 0
 			par.visible = true
 			var float_strength = abs(distance_to_target) / 10.0
 			vertical_velocity -= float_force * float_strength * delta
@@ -304,5 +446,4 @@ func _physics_process(delta):
 	velocity.y = vertical_velocity
 	move_and_slide()
 	
-	# Aplicar el offset de posición X después de move_and_slide
 	position.x = original_x + x_offset

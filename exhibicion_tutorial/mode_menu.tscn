@@ -1,0 +1,118 @@
+[gd_scene load_steps=9 format=3 uid="uid://bkl0p30b2qsqx"]
+
+[ext_resource type="Script" uid="uid://d22itsjjb0105" path="res://exhibicion_tutorial/control.gd" id="1_h3wxr"]
+[ext_resource type="AudioStream" uid="uid://7fukcxcpyv02" path="res://menu de exhibicion/vhs-lca.mp3" id="2_upqdm"]
+[ext_resource type="FontFile" uid="uid://d7hubcc5m44q" path="res://beatcheck/Blue Screen Personal Use.ttf" id="3_1ekx7"]
+[ext_resource type="PackedScene" uid="uid://drgge65mbyqsh" path="res://shader/shader.tscn" id="4_fta2c"]
+[ext_resource type="Texture2D" uid="uid://c1tp7pqe622b5" path="res://icon.svg" id="5_tveoq"]
+[ext_resource type="AudioStream" uid="uid://cseooimepugnn" path="res://menu de exhibicion/vhs-noise.mp3" id="6_rwri1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ehchv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0gj7n"]
+
+[node name="mode_menu" type="Node2D"]
+position = Vector2(13, 0)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_h3wxr")
+
+[node name="button" type="AudioStreamPlayer2D" parent="Control"]
+stream = ExtResource("2_upqdm")
+volume_db = 7.45
+panning_strength = 1.04
+
+[node name="Exhibition1" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 566.0
+offset_top = 360.0
+offset_right = 1283.0
+offset_bottom = 569.0
+scale = Vector2(0.8980576, 0.7041498)
+theme_override_colors/font_color = Color(0.25, 1, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0.82, 0.06833327, 1)
+theme_override_fonts/font = ExtResource("3_1ekx7")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ehchv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0gj7n")
+text = "Exhibition 1"
+flat = true
+
+[node name="Exhibition2" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 566.0
+offset_top = 506.99997
+offset_right = 1283.0
+offset_bottom = 716.0
+scale = Vector2(0.8980576, 0.7041498)
+theme_override_colors/font_color = Color(0.25, 1, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0.82, 0.06833327, 1)
+theme_override_fonts/font = ExtResource("3_1ekx7")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ehchv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0gj7n")
+text = "Exhibition 2"
+flat = true
+
+[node name="Exhibition3" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 566.0
+offset_top = 654.0
+offset_right = 1283.0
+offset_bottom = 863.0
+scale = Vector2(0.8980576, 0.7041498)
+theme_override_colors/font_color = Color(0.25, 1, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0.82, 0.06833327, 1)
+theme_override_fonts/font = ExtResource("3_1ekx7")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ehchv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0gj7n")
+text = "credits"
+flat = true
+
+[node name="FadeCanvasLayer" parent="Control" instance=ExtResource("4_fta2c")]
+scale = Vector2(2.415, 2.415)
+transform = Transform2D(2.415, 0, 0, 2.415, 0, 0)
+
+[node name="BlackScreen" type="Sprite2D" parent="Control"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(984.00006, 543)
+scale = Vector2(16.04629, 8.490277)
+texture = ExtResource("5_tveoq")
+
+[node name="Exhibition4" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 566.0
+offset_top = 829.0
+offset_right = 1283.0
+offset_bottom = 1038.0
+scale = Vector2(0.8980576, 0.7041498)
+theme_override_colors/font_color = Color(0.25, 1, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0.82, 0.06833327, 1)
+theme_override_fonts/font = ExtResource("3_1ekx7")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ehchv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0gj7n")
+text = "quit"
+flat = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(906, 583)
+zoom = Vector2(1.41, 1.41)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -6
+position = Vector2(991, 539)
+scale = Vector2(-15.78315, -10.249086)
+texture = ExtResource("5_tveoq")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_rwri1")
+volume_db = -0.81
+autoplay = true
+
+[connection signal="pressed" from="Control/Exhibition1" to="Control" method="_on_exhibition_1_pressed"]
+[connection signal="pressed" from="Control/Exhibition2" to="Control" method="_on_exhibition_2_pressed"]

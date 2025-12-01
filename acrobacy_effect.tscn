@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://ea5qyotdh8ia"]
+
+[ext_resource type="Texture2D" uid="uid://e0t1tpb0u8y0" path="res://beatcheck/hit.png" id="1_a56ia"]
+[ext_resource type="Script" uid="uid://bkdcjs4j3wcn7" path="res://acrobacy_effect.gd" id="1_bg760"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bg760"]
+atlas = ExtResource("1_a56ia")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3152"]
+atlas = ExtResource("1_a56ia")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vo62k"]
+atlas = ExtResource("1_a56ia")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tb754"]
+atlas = ExtResource("1_a56ia")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1t744"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bg760")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3152")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vo62k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tb754")
+}],
+"loop": true,
+"name": &"default",
+"speed": 14.0
+}]
+
+[node name="acrobacy_effect" type="Node2D"]
+script = ExtResource("1_bg760")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1t744")
+autoplay = "default"
+frame_progress = 0.07714654

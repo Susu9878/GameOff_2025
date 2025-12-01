@@ -1,0 +1,224 @@
+[gd_scene load_steps=27 format=3 uid="uid://jh286cqnxxot"]
+
+[ext_resource type="Script" uid="uid://bqyqfqxl00flb" path="res://tutorial.gd" id="1_ehuit"]
+[ext_resource type="Texture2D" uid="uid://r62ed4gno7dm" path="res://tuto/Sprite-0001-Sheet.png" id="2_yb1ct"]
+[ext_resource type="Script" uid="uid://32fdi2o74c1j" path="res://starcheck.gd" id="3_5mrt3"]
+[ext_resource type="AudioStream" uid="uid://dn0jds4w11lmr" path="res://tuto/audiomass-output.wav" id="3_rwowx"]
+[ext_resource type="AudioStream" uid="uid://bylwg6ix43mke" path="res://tuto/star1.wav" id="4_0cr88"]
+[ext_resource type="Texture2D" uid="uid://wmulgcgw58mv" path="res://tuto/tutorial_start.png" id="4_5mrt3"]
+[ext_resource type="AudioStream" uid="uid://cuw56gd6xe62q" path="res://tuto/star3.wav" id="5_4t6hg"]
+[ext_resource type="AudioStream" uid="uid://cb78gftrogm2i" path="res://tuto/star2.wav" id="5_7vrqn"]
+[ext_resource type="Texture2D" uid="uid://c1tp7pqe622b5" path="res://icon.svg" id="9_7vrqn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5mrt3"]
+radius = 16.124516
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hu44a"]
+atlas = ExtResource("4_5mrt3")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cr88"]
+atlas = ExtResource("4_5mrt3")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4t6hg"]
+atlas = ExtResource("4_5mrt3")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vrqn"]
+atlas = ExtResource("4_5mrt3")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhfnd"]
+atlas = ExtResource("4_5mrt3")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvjhf"]
+atlas = ExtResource("4_5mrt3")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmw6g"]
+atlas = ExtResource("4_5mrt3")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hjyh"]
+atlas = ExtResource("4_5mrt3")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsk3x"]
+atlas = ExtResource("4_5mrt3")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dl7dh"]
+atlas = ExtResource("4_5mrt3")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4o0u"]
+atlas = ExtResource("4_5mrt3")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k08xv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hu44a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cr88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4t6hg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vrqn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhfnd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvjhf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmw6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hjyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsk3x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dl7dh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4o0u")
+}],
+"loop": false,
+"name": &"get",
+"speed": 9.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehuit"]
+atlas = ExtResource("2_yb1ct")
+region = Rect2(0, 0, 356, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mrt3"]
+atlas = ExtResource("2_yb1ct")
+region = Rect2(356, 0, 356, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwowx"]
+atlas = ExtResource("2_yb1ct")
+region = Rect2(712, 0, 356, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0cr88"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehuit")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mrt3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwowx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="tutorial" type="Node2D"]
+position = Vector2(-6, 37)
+script = ExtResource("1_ehuit")
+
+[node name="voice1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_rwowx")
+volume_db = 1.664
+
+[node name="star" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_0cr88")
+
+[node name="star2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_7vrqn")
+
+[node name="star3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_4t6hg")
+
+[node name="textsound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="starcheck" type="Area2D" parent="."]
+position = Vector2(-85, -254)
+script = ExtResource("3_5mrt3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="starcheck"]
+position = Vector2(16, 72)
+shape = SubResource("CircleShape2D_5mrt3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="starcheck"]
+z_index = 3
+position = Vector2(15, 71)
+sprite_frames = SubResource("SpriteFrames_k08xv")
+autoplay = "default"
+frame_progress = 0.012702871
+
+[node name="starcheck2" type="Area2D" parent="."]
+position = Vector2(5, -182)
+script = ExtResource("3_5mrt3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="starcheck2"]
+shape = SubResource("CircleShape2D_5mrt3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="starcheck2"]
+z_index = 3
+sprite_frames = SubResource("SpriteFrames_k08xv")
+autoplay = "default"
+frame_progress = 0.6287954
+
+[node name="starcheck3" type="Area2D" parent="."]
+position = Vector2(81, -182)
+script = ExtResource("3_5mrt3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="starcheck3"]
+shape = SubResource("CircleShape2D_5mrt3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="starcheck3"]
+z_index = 3
+sprite_frames = SubResource("SpriteFrames_k08xv")
+autoplay = "default"
+frame_progress = 0.4874387
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BlackScreen" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+z_index = 5
+position = Vector2(22.000008, 48)
+scale = Vector2(62.98949, -36.253326)
+texture = ExtResource("9_7vrqn")
+
+[node name="backspritetext" type="AnimatedSprite2D" parent="."]
+z_index = 15
+position = Vector2(10, 43)
+sprite_frames = SubResource("SpriteFrames_0cr88")
+autoplay = "default"
+frame_progress = 0.41167763
+
+[node name="text_tutorial" type="RichTextLabel" parent="."]
+z_index = 17
+offset_left = -156.0
+offset_top = -11.0
+offset_right = 113.0
+offset_bottom = 97.0
+
+[connection signal="area_entered" from="starcheck" to="." method="_on_starcheck_area_entered"]
+[connection signal="body_entered" from="starcheck" to="." method="_on_starcheck_body_entered"]
+[connection signal="body_shape_entered" from="starcheck" to="." method="_on_starcheck_body_shape_entered"]
+[connection signal="area_entered" from="starcheck2" to="." method="_on_starcheck_2_area_entered"]
+[connection signal="body_entered" from="starcheck2" to="." method="_on_starcheck_2_body_entered"]
+[connection signal="area_entered" from="starcheck3" to="." method="_on_starcheck_3_area_entered"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://7fukcxcpyv02"
+path="res://.godot/imported/vhs-lca.mp3-df983e2c895fe291b87f13d5c29fd815.mp3str"
+
+[deps]
+
+source_file="res://menu de exhibicion/vhs-lca.mp3"
+dest_files=["res://.godot/imported/vhs-lca.mp3-df983e2c895fe291b87f13d5c29fd815.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

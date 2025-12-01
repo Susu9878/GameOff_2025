@@ -1,32 +1,217 @@
-[gd_scene load_steps=8 format=3 uid="uid://daravykcdokw5"]
+[gd_scene load_steps=26 format=3 uid="uid://daravykcdokw5"]
 
-[ext_resource type="Script" uid="uid://dqqbsvwnh2hnp" path="res://wavesingle.gd" id="1_qnpyt"]
+[ext_resource type="Script" uid="uid://dmxj1gl855ihu" path="res://way/world.gd" id="1_sfgw3"]
 [ext_resource type="PackedScene" uid="uid://c5aph2llqr08d" path="res://lancha/lancha.tscn" id="2_qnpyt"]
-[ext_resource type="AudioStream" uid="uid://caghy1p6bdg3w" path="res://beatcheck/demo_segunda carrera.wav" id="3_64ll5"]
 [ext_resource type="PackedScene" uid="uid://mm4ikf4nen5k" path="res://way/wavesingle.tscn" id="5_64ll5"]
+[ext_resource type="Script" uid="uid://dfx7cnpasjceb" path="res://way/character_body_2d.gd" id="6_2fesc"]
 [ext_resource type="PackedScene" uid="uid://dwwmngsvt7vt4" path="res://way/way_3.tscn" id="6_ppkit"]
 [ext_resource type="PackedScene" uid="uid://di8juaw31r3g2" path="res://camera.tscn" id="6_qnpyt"]
-[ext_resource type="Texture2D" uid="uid://cs1i1yq6n8cdn" path="res://beatcheck/neon-cityscape-pixel-art-vector-32876760.png" id="7_ppkit"]
+[ext_resource type="Shader" uid="uid://daa8yrilvroqo" path="res://shader/world.gdshader" id="8_1pxa2"]
+[ext_resource type="Script" uid="uid://cubt3rh1rbjpe" path="res://way/canvas_layer.gd" id="8_fmo7i"]
+[ext_resource type="Script" uid="uid://crc0e8w1xxvfv" path="res://way/style.gd" id="9_mm63k"]
+[ext_resource type="Script" uid="uid://di81peikcoyxq" path="res://way/mesh_instance_2d.gd" id="9_sfgw3"]
+[ext_resource type="PackedScene" uid="uid://jh286cqnxxot" path="res://tutorial.tscn" id="10_8jkqn"]
+[ext_resource type="Texture2D" uid="uid://tw42apw7jj72" path="res://way/Sprite-0004-Sheet.png" id="12_mdqao"]
+[ext_resource type="AudioStream" uid="uid://cmvng1f0n72d5" path="res://WhatsApp-Audio-2025-11-30-at-1.31.44-AM_1.wav" id="12_qrtp8"]
+[ext_resource type="AudioStream" uid="uid://cseooimepugnn" path="res://menu de exhibicion/vhs-noise.mp3" id="12_sfgw3"]
+[ext_resource type="Script" uid="uid://dkpkeahsdl6ww" path="res://way/neon_cityscape_pixel_art_vector_32876762.gd" id="15_nty3n"]
+[ext_resource type="Script" uid="uid://dfelraudcvr5" path="res://way/neon_cityscape_pixel_art_vector_32876763.gd" id="16_ryeb1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fmo7i"]
+shader = ExtResource("8_1pxa2")
+shader_parameter/curvature_progress = 0.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_2fesc"]
+uv2_padding = 0.0
+size = Vector2(4000, 4000)
+
+[sub_resource type="Curve" id="Curve_sfgw3"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_mm63k"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fmo7i"]
+gradient = SubResource("Gradient_mm63k")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbpbx"]
+atlas = ExtResource("12_mdqao")
+region = Rect2(0, 0, 1800, 900)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_av4fv"]
+atlas = ExtResource("12_mdqao")
+region = Rect2(1800, 0, 1800, 900)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_df3po"]
+atlas = ExtResource("12_mdqao")
+region = Rect2(3600, 0, 1800, 900)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0we3a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbpbx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_av4fv")
+}],
+"loop": true,
+"name": &"default_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_df3po")
+}],
+"loop": true,
+"name": &"default_2",
+"speed": 5.0
+}]
 
 [node name="world" type="Node2D"]
-script = ExtResource("1_qnpyt")
+script = ExtResource("1_sfgw3")
 
 [node name="way_3" parent="." instance=ExtResource("6_ppkit")]
+z_index = -5
 position = Vector2(1193, 561)
 rotation = 3.1415927
 scale = Vector2(1, 1)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_64ll5")
-autoplay = true
-
-[node name="CharacterBody2D2" parent="." instance=ExtResource("2_qnpyt")]
+[node name="Player" parent="." instance=ExtResource("2_qnpyt")]
 z_index = 5
-position = Vector2(857, 417.00003)
+position = Vector2(797.99994, 418.00003)
 
-[node name="Node2D" parent="CharacterBody2D2" instance=ExtResource("6_qnpyt")]
-position = Vector2(-631.1537, -444.66516)
+[node name="Node2D2" parent="Player" instance=ExtResource("6_qnpyt")]
+position = Vector2(-572.23267, -445.7315)
+scale = Vector2(0.9986609, 1.0663432)
+
+[node name="tutorial" parent="Player" instance=ExtResource("10_8jkqn")]
+position = Vector2(-200.73077, -65.04697)
 scale = Vector2(0.9986609, 1.0663433)
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="Player/tutorial"]
+layer = 0
+script = ExtResource("8_fmo7i")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Player/tutorial/CanvasLayer2"]
+position = Vector2(430.00006, 1488)
+rotation = -0.20071286
+scale = Vector2(4.0882144, 3.6947455)
+energy = 0.0
+max_distance = 0.0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Player/tutorial/CanvasLayer2"]
+modulate = Color(1, 1, 1, 0.29411766)
+z_index = 13
+material = SubResource("ShaderMaterial_fmo7i")
+position = Vector2(1489, 925)
+scale = Vector2(2.02, 2.02)
+mesh = SubResource("QuadMesh_2fesc")
+script = ExtResource("9_sfgw3")
+animation_curve = SubResource("Curve_sfgw3")
+
+[node name="Node2D" type="Node2D" parent="Player/tutorial/CanvasLayer2"]
+position = Vector2(-74.00001, 524.99994)
+scale = Vector2(1.3352708, 1.948578)
+
+[node name="AirtimeBonus" type="CharacterBody2D" parent="Player/tutorial/CanvasLayer2"]
+position = Vector2(-298, 615)
+scale = Vector2(1.3352708, 1.948578)
+
+[node name="bonustype" type="RichTextLabel" parent="Player/tutorial/CanvasLayer2/AirtimeBonus"]
+offset_left = 26.960823
+offset_top = 142.66818
+offset_right = 500.27304
+offset_bottom = 253.51826
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92156863)
+text = "AIR BONUS"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+script = ExtResource("9_mm63k")
+
+[node name="air" type="RichTextLabel" parent="Player/tutorial/CanvasLayer2/AirtimeBonus"]
+modulate = Color(2.2140146e-06, 0.7490035, 0.74122393, 1)
+offset_left = 256.1278
+offset_top = 142.66812
+offset_right = 729.44006
+offset_bottom = 253.51822
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92156863)
+text = "AIR BONUS"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+script = ExtResource("9_mm63k")
+
+[node name="PointLight2D" type="PointLight2D" parent="Player/tutorial/CanvasLayer2/AirtimeBonus"]
+position = Vector2(190.9725, 161.65634)
+rotation = 3.1415927
+scale = Vector2(2.7348816, -72.38759)
+color = Color(0.8205029, 0.0014063806, 0.9340645, 1)
+energy = 5.7
+texture = SubResource("GradientTexture1D_fmo7i")
+
+[node name="AirtimeBonus2" type="CharacterBody2D" parent="Player/tutorial/CanvasLayer2"]
+z_index = -3
+position = Vector2(782, 525)
+scale = Vector2(1.3352708, 1.948578)
+
+[node name="score" type="RichTextLabel" parent="Player/tutorial/CanvasLayer2/AirtimeBonus2"]
+offset_left = 407.40805
+offset_top = 207.84387
+offset_right = 718.9554
+offset_bottom = 289.44183
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92156863)
+text = "SCORE"
+horizontal_alignment = 1
+script = ExtResource("9_mm63k")
+
+[node name="points" type="RichTextLabel" parent="Player/tutorial/CanvasLayer2/AirtimeBonus2"]
+modulate = Color(2.2140146e-06, 0.7490035, 0.74122393, 1)
+offset_left = 167.75626
+offset_top = 58.504208
+offset_right = 965.3474
+offset_bottom = 196.0404
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92156863)
+text = "eee"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 2
+script = ExtResource("9_mm63k")
+
+[node name="combo" type="CharacterBody2D" parent="Player/tutorial/CanvasLayer2"]
+position = Vector2(1070, -94)
+scale = Vector2(1.3352708, 1.948578)
+
+[node name="combo" type="RichTextLabel" parent="Player/tutorial/CanvasLayer2/combo"]
+offset_left = 105.59657
+offset_top = 191.42165
+offset_right = 578.9088
+offset_bottom = 302.27173
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92156863)
+text = "COMBO !"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+script = ExtResource("9_mm63k")
+
+[node name="combo_count" type="RichTextLabel" parent="Player/tutorial/CanvasLayer2/combo"]
+offset_left = 287.5821
+offset_top = 221.18694
+offset_right = 391.68085
+offset_bottom = 332.03702
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92156863)
+text = "AIR BONUS"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+script = ExtResource("9_mm63k")
 
 [node name="wavesingle19" parent="." instance=ExtResource("5_64ll5")]
 top_level = true
@@ -388,7 +573,556 @@ top_level = true
 z_index = 2
 position = Vector2(1422, 556)
 
-[node name="NeonCityscapePixelArtVector32876760" type="Sprite2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(585, 418)
+stream = ExtResource("12_qrtp8")
+volume_db = 1.21
+autoplay = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AudioStreamPlayer2D"]
+stream = ExtResource("12_sfgw3")
+volume_db = -6.63
+
+[node name="wavesingle91" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(222, 556)
+
+[node name="wavesingle92" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(238, 556)
+
+[node name="wavesingle93" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(254, 556)
+
+[node name="wavesingle94" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(270, 556)
+
+[node name="wavesingle95" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(158, 556)
+
+[node name="wavesingle96" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(174, 556)
+
+[node name="wavesingle97" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(190, 556)
+
+[node name="wavesingle98" parent="." instance=ExtResource("5_64ll5")]
+top_level = true
+z_index = 2
+position = Vector2(206, 556)
+
+[node name="NeonCityscapePixelArtVector32876761" type="CharacterBody2D" parent="."]
 z_index = -5
-position = Vector2(703, 404)
-texture = ExtResource("7_ppkit")
+position = Vector2(846, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("6_2fesc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876761"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+frame_progress = 0.87962204
+
+[node name="NeonCityscapePixelArtVector32876762" type="CharacterBody2D" parent="."]
+z_index = -6
+position = Vector2(846, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("15_nty3n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876762"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_2"
+
+[node name="NeonCityscapePixelArtVector32876763" type="CharacterBody2D" parent="."]
+z_index = -7
+position = Vector2(846, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("16_ryeb1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876763"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_1"
+
+[node name="NeonCityscapePixelArtVector32876764" type="CharacterBody2D" parent="."]
+z_index = -5
+position = Vector2(2152, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("6_2fesc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876764"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+frame_progress = 0.023986006
+
+[node name="NeonCityscapePixelArtVector32876765" type="CharacterBody2D" parent="."]
+z_index = -6
+position = Vector2(2152, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("15_nty3n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876765"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_2"
+
+[node name="NeonCityscapePixelArtVector32876766" type="CharacterBody2D" parent="."]
+z_index = -7
+position = Vector2(2152, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("16_ryeb1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876766"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_1"
+
+[node name="NeonCityscapePixelArtVector32876767" type="CharacterBody2D" parent="."]
+z_index = -5
+position = Vector2(3461, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("6_2fesc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876767"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+frame_progress = 0.023986006
+
+[node name="NeonCityscapePixelArtVector32876768" type="CharacterBody2D" parent="."]
+z_index = -6
+position = Vector2(3461, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("15_nty3n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876768"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_2"
+
+[node name="NeonCityscapePixelArtVector32876769" type="CharacterBody2D" parent="."]
+z_index = -7
+position = Vector2(3461, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("16_ryeb1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876769"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_1"
+
+[node name="NeonCityscapePixelArtVector32876770" type="CharacterBody2D" parent="."]
+z_index = -5
+position = Vector2(846, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("6_2fesc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876770"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+frame_progress = 0.87962204
+
+[node name="NeonCityscapePixelArtVector32876771" type="CharacterBody2D" parent="."]
+z_index = -6
+position = Vector2(846, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("15_nty3n")
+
+[node name="NeonCityscapePixelArtVector32876772" type="CharacterBody2D" parent="."]
+z_index = -7
+position = Vector2(846, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("16_ryeb1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876772"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_1"
+
+[node name="NeonCityscapePixelArtVector32876773" type="CharacterBody2D" parent="."]
+z_index = -5
+position = Vector2(2152, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("6_2fesc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876773"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+frame_progress = 0.023986006
+
+[node name="NeonCityscapePixelArtVector32876774" type="CharacterBody2D" parent="."]
+z_index = -6
+position = Vector2(2152, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("15_nty3n")
+
+[node name="NeonCityscapePixelArtVector32876775" type="CharacterBody2D" parent="."]
+z_index = -7
+position = Vector2(2152, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("16_ryeb1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876775"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_1"
+
+[node name="NeonCityscapePixelArtVector32876776" type="CharacterBody2D" parent="."]
+z_index = -5
+position = Vector2(3461, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("6_2fesc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876776"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+frame_progress = 0.023986006
+
+[node name="NeonCityscapePixelArtVector32876777" type="CharacterBody2D" parent="."]
+z_index = -6
+position = Vector2(3461, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("15_nty3n")
+
+[node name="NeonCityscapePixelArtVector32876778" type="CharacterBody2D" parent="."]
+z_index = -7
+position = Vector2(3461, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("16_ryeb1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876778"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_1"
+
+[node name="NeonCityscapePixelArtVector32876779" type="CharacterBody2D" parent="."]
+z_index = -5
+position = Vector2(4746, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("6_2fesc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876779"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+frame_progress = 0.87962204
+
+[node name="NeonCityscapePixelArtVector32876780" type="CharacterBody2D" parent="."]
+z_index = -6
+position = Vector2(4746, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("15_nty3n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876780"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_2"
+
+[node name="NeonCityscapePixelArtVector32876781" type="CharacterBody2D" parent="."]
+z_index = -7
+position = Vector2(4746, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("16_ryeb1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876781"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_1"
+
+[node name="NeonCityscapePixelArtVector32876782" type="CharacterBody2D" parent="."]
+z_index = -5
+position = Vector2(6052, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("6_2fesc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876782"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+frame_progress = 0.023986006
+
+[node name="NeonCityscapePixelArtVector32876783" type="CharacterBody2D" parent="."]
+z_index = -6
+position = Vector2(6052, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("15_nty3n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876783"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_2"
+
+[node name="NeonCityscapePixelArtVector32876784" type="CharacterBody2D" parent="."]
+z_index = -7
+position = Vector2(6052, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("16_ryeb1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876784"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_1"
+
+[node name="NeonCityscapePixelArtVector32876785" type="CharacterBody2D" parent="."]
+z_index = -5
+position = Vector2(7361, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("6_2fesc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876785"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+frame_progress = 0.023986006
+
+[node name="NeonCityscapePixelArtVector32876786" type="CharacterBody2D" parent="."]
+z_index = -6
+position = Vector2(7361, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("15_nty3n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876786"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_2"
+
+[node name="NeonCityscapePixelArtVector32876787" type="CharacterBody2D" parent="."]
+z_index = -7
+position = Vector2(7361, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("16_ryeb1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876787"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_1"
+
+[node name="NeonCityscapePixelArtVector32876788" type="CharacterBody2D" parent="."]
+z_index = -5
+position = Vector2(4746, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("6_2fesc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876788"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+frame_progress = 0.87962204
+
+[node name="NeonCityscapePixelArtVector32876789" type="CharacterBody2D" parent="."]
+z_index = -6
+position = Vector2(4746, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("15_nty3n")
+
+[node name="NeonCityscapePixelArtVector32876790" type="CharacterBody2D" parent="."]
+z_index = -7
+position = Vector2(4746, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("16_ryeb1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876790"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_1"
+
+[node name="NeonCityscapePixelArtVector32876791" type="CharacterBody2D" parent="."]
+z_index = -5
+position = Vector2(6052, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("6_2fesc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876791"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+frame_progress = 0.023986006
+
+[node name="NeonCityscapePixelArtVector32876792" type="CharacterBody2D" parent="."]
+z_index = -6
+position = Vector2(6052, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("15_nty3n")
+
+[node name="NeonCityscapePixelArtVector32876793" type="CharacterBody2D" parent="."]
+z_index = -7
+position = Vector2(6052, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("16_ryeb1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876793"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_1"
+
+[node name="NeonCityscapePixelArtVector32876794" type="CharacterBody2D" parent="."]
+z_index = -5
+position = Vector2(7361, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("6_2fesc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876794"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+frame_progress = 0.023986006
+
+[node name="NeonCityscapePixelArtVector32876795" type="CharacterBody2D" parent="."]
+z_index = -6
+position = Vector2(7361, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("15_nty3n")
+
+[node name="NeonCityscapePixelArtVector32876796" type="CharacterBody2D" parent="."]
+z_index = -7
+position = Vector2(7361, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("16_ryeb1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876796"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_1"
+
+[node name="NeonCityscapePixelArtVector32876797" type="CharacterBody2D" parent="."]
+z_index = -5
+position = Vector2(8672, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("6_2fesc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876797"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+frame_progress = 0.87962204
+
+[node name="NeonCityscapePixelArtVector32876798" type="CharacterBody2D" parent="."]
+z_index = -6
+position = Vector2(8672, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("15_nty3n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876798"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_2"
+
+[node name="NeonCityscapePixelArtVector32876799" type="CharacterBody2D" parent="."]
+z_index = -7
+position = Vector2(8672, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("16_ryeb1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876799"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_1"
+
+[node name="NeonCityscapePixelArtVector32876800" type="CharacterBody2D" parent="."]
+z_index = -5
+position = Vector2(9978, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("6_2fesc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876800"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+frame_progress = 0.023986006
+
+[node name="NeonCityscapePixelArtVector32876801" type="CharacterBody2D" parent="."]
+z_index = -6
+position = Vector2(9978, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("15_nty3n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876801"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_2"
+
+[node name="NeonCityscapePixelArtVector32876802" type="CharacterBody2D" parent="."]
+z_index = -7
+position = Vector2(9978, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("16_ryeb1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876802"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_1"
+
+[node name="NeonCityscapePixelArtVector32876803" type="CharacterBody2D" parent="."]
+z_index = -5
+position = Vector2(11287, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("6_2fesc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876803"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+frame_progress = 0.023986006
+
+[node name="NeonCityscapePixelArtVector32876804" type="CharacterBody2D" parent="."]
+z_index = -6
+position = Vector2(11287, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("15_nty3n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876804"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_2"
+
+[node name="NeonCityscapePixelArtVector32876805" type="CharacterBody2D" parent="."]
+z_index = -7
+position = Vector2(11287, 376)
+scale = Vector2(0.738, 0.665)
+script = ExtResource("16_ryeb1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876805"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_1"
+
+[node name="NeonCityscapePixelArtVector32876806" type="CharacterBody2D" parent="."]
+z_index = -5
+position = Vector2(8672, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("6_2fesc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876806"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+frame_progress = 0.87962204
+
+[node name="NeonCityscapePixelArtVector32876807" type="CharacterBody2D" parent="."]
+z_index = -6
+position = Vector2(8672, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("15_nty3n")
+
+[node name="NeonCityscapePixelArtVector32876808" type="CharacterBody2D" parent="."]
+z_index = -7
+position = Vector2(8672, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("16_ryeb1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876808"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_1"
+
+[node name="NeonCityscapePixelArtVector32876809" type="CharacterBody2D" parent="."]
+z_index = -5
+position = Vector2(9978, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("6_2fesc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876809"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+frame_progress = 0.023986006
+
+[node name="NeonCityscapePixelArtVector32876810" type="CharacterBody2D" parent="."]
+z_index = -6
+position = Vector2(9978, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("15_nty3n")
+
+[node name="NeonCityscapePixelArtVector32876811" type="CharacterBody2D" parent="."]
+z_index = -7
+position = Vector2(9978, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("16_ryeb1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876811"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_1"
+
+[node name="NeonCityscapePixelArtVector32876812" type="CharacterBody2D" parent="."]
+z_index = -5
+position = Vector2(11287, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("6_2fesc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876812"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+frame_progress = 0.023986006
+
+[node name="NeonCityscapePixelArtVector32876813" type="CharacterBody2D" parent="."]
+z_index = -6
+position = Vector2(11287, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("15_nty3n")
+
+[node name="NeonCityscapePixelArtVector32876814" type="CharacterBody2D" parent="."]
+z_index = -7
+position = Vector2(11287, -222)
+scale = Vector2(0.738, -0.665)
+script = ExtResource("16_ryeb1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeonCityscapePixelArtVector32876814"]
+sprite_frames = SubResource("SpriteFrames_0we3a")
+animation = &"default_1"

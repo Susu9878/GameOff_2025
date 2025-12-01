@@ -3,9 +3,12 @@
 [ext_resource type="Script" uid="uid://c53rt7uroedqq" path="res://way/line3_2d.gd" id="1_64b3i"]
 
 [node name="way_3" type="CharacterBody2D"]
+visible = false
 scale = Vector2(-1, -1)
 
 [node name="Line2D" type="Line2D" parent="."]
+visible = false
+z_index = 7
 position = Vector2(-7, 0)
 points = PackedVector2Array(0, 0, 64.889404, 0, 127.80945, 0, 187.09937, 0, 257.27942, 0, 329.8794, 0, 395.21942, 0, 462.97943, 0, 529.5294, 0, 591.23944, 0, 661.41943, 0, 729.17944, 0, 801.7794, 0, 868.3294, 0, 933.66943, 0, 996.5895, 0, 1058.6003, 0, 1130.1003, 0, 1190.6003, 0, 1252.2002, 0, 1319.3003, 0, 1394.1003, 0, 1471.1003, 0, 1553.6003, 0, 1630, 0)
 script = ExtResource("1_64b3i")

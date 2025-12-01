@@ -5,13 +5,11 @@ var float_force = 1000.0
 var damping = 0.9
 var time = 0.0
 
+var tutorial = true
 @onready var raycast = $RayCast2D
 
 
 func _physics_process(delta):
-	time += delta
-	
-	
 	if raycast.is_colliding():
 		var collision_point = raycast.get_collision_point()
 		var target_y = collision_point.y - float_offset
@@ -28,3 +26,5 @@ func _physics_process(delta):
 		velocity.y *= damping
 	
 	move_and_slide()
+
+	

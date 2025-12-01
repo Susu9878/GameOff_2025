@@ -98,3 +98,75 @@ position = Vector2(0, 215)
 sprite_frames = SubResource("SpriteFrames_5m68q")
 autoplay = "default"
 frame_progress = 0.6963772
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 277)
+sprite_frames = SubResource("SpriteFrames_5m68q")
+autoplay = "default"
+frame_progress = 0.7519938
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 339)
+sprite_frames = SubResource("SpriteFrames_5m68q")
+autoplay = "default"
+frame_progress = 0.0056603192
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 401)
+sprite_frames = SubResource("SpriteFrames_5m68q")
+autoplay = "default"
+frame_progress = 0.6963772
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 463)
+sprite_frames = SubResource("SpriteFrames_5m68q")
+autoplay = "default"
+frame_progress = 0.6963772
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 525)
+sprite_frames = SubResource("SpriteFrames_5m68q")
+autoplay = "default"
+frame_progress = 0.7519938
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 587)
+sprite_frames = SubResource("SpriteFrames_5m68q")
+autoplay = "default"
+frame_progress = 0.0056603192
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 649)
+sprite_frames = SubResource("SpriteFrames_5m68q")
+autoplay = "default"
+frame_progress = 0.6963772
+
+[node name="AnimatedSprite2D12" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 711)
+sprite_frames = SubResource("SpriteFrames_5m68q")
+autoplay = "default"
+frame_progress = 0.6963772
+
+[node name="AnimatedSprite2D13" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 773)
+sprite_frames = SubResource("SpriteFrames_5m68q")
+autoplay = "default"
+frame_progress = 0.7519938
+
+[node name="AnimatedSprite2D14" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 835)
+sprite_frames = SubResource("SpriteFrames_5m68q")
+autoplay = "default"
+frame_progress = 0.0056603192
+
+[node name="AnimatedSprite2D15" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 897)
+sprite_frames = SubResource("SpriteFrames_5m68q")
+autoplay = "default"
+frame_progress = 0.6963772
+
+[node name="AnimatedSprite2D16" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 959)
+sprite_frames = SubResource("SpriteFrames_5m68q")
+autoplay = "default"
+frame_progress = 0.6963772

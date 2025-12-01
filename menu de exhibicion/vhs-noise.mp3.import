@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cseooimepugnn"
+path="res://.godot/imported/vhs-noise.mp3-c97f3226d6d04070b30a148092f72a78.mp3str"
+
+[deps]
+
+source_file="res://menu de exhibicion/vhs-noise.mp3"
+dest_files=["res://.godot/imported/vhs-noise.mp3-c97f3226d6d04070b30a148092f72a78.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://3jkj082n3bqg"
+path="res://.godot/imported/audiomass-output (5).wav-33a21c151e1ca7f47440cc0469e5e8b8.sample"
+
+[deps]
+
+source_file="res://way/audiomass-output (5).wav"
+dest_files=["res://.godot/imported/audiomass-output (5).wav-33a21c151e1ca7f47440cc0469e5e8b8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

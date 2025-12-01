@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://drgge65mbyqsh"]
+
+[ext_resource type="Shader" uid="uid://daa8yrilvroqo" path="res://shader/world.gdshader" id="1_ousho"]
+[ext_resource type="Script" uid="uid://di81peikcoyxq" path="res://way/mesh_instance_2d.gd" id="2_ksqt4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fmo7i"]
+shader = ExtResource("1_ousho")
+shader_parameter/curvature_progress = 0.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_2fesc"]
+size = Vector2(2500, 3000)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_fmo7i")
+position = Vector2(664, 440)
+mesh = SubResource("QuadMesh_2fesc")
+script = ExtResource("2_ksqt4")
